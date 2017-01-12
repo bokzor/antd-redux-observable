@@ -1,4 +1,4 @@
-import * as ActionTypes from './ActionTypes';
+import * as ActionTypes from '../constants/ActionTypes';
 
 export const exampleAction = (query)  => {
   return {
@@ -9,3 +9,6 @@ export const exampleAction = (query)  => {
   };
 };
 
+export const fetchEntities = () => {
+
+};

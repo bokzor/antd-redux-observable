@@ -1,4 +1,4 @@
-import * as ActionTypes from '../actionCreators/ActionTypes';
+import * as ActionTypes from '../constants/ActionTypes';
 
 const initialState = [];
 

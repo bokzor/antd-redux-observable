@@ -41,7 +41,7 @@ export default class DataTable extends Component {
 
   fetch(params = {}) {
     console.log('params:', params);
-    this.setState({ loading: true });
+    this.setState({ loading: false });
   }
 
   componentDidMount() {

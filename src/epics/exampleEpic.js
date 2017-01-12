@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import * as ActionTypes from '../actionCreators/ActionTypes';
+import * as ActionTypes from '../constants/ActionTypes';
 import { exampleAction } from '../actionCreators';
 
 export function example(action$) {

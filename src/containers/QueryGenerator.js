@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import { Select, Input, Button, Row } from 'antd';
+
+import { fetchMetadata } from '../actionCreators';
+
+import { Select, Input, Button, Row, DatePicker} from 'antd';
 const Option = Select.Option;
 const InputGroup = Input.Group;
 const ButtonGroup = Button.Group;
 
 
+
 export default class QueryGenerator extends Component {
 
   handleChange(value) {
+    fetchMetadata('mail_contact');
     console.log(value);
   }
 
@@ -40,7 +45,9 @@ export default class QueryGenerator extends Component {
             <Option value="lucy">=</Option>
             <Option value="tom">!=</Option>
           </Select>
-          <Input style={{ width: '33%' }}/>
+          <DatePicker
+            style={{ width: '33%' }}
+          />
         </InputGroup>
 
         <Row type="flex" justify="space-around" align="middle">

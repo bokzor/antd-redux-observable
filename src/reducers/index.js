@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import example from './example';
+import metadata from './metadata';
 
 
 export default combineReducers({
-  example,
+  metadata,
 
 });

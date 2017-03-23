@@ -1,7 +1,7 @@
 // @flow
 import * as ActionTypes from '../constants/ActionTypes';
 
-export const exampleAction = (query : string)  => {
+export const exampleAction = (query : String)  => {
   return {
     type: ActionTypes.ACTION_EXAMPLE,
     payload: {
@@ -19,6 +19,13 @@ export const fetchMetadata = (entitySet : String) => {
   }
 };
 
-export const fetchEntities = () => {
-
+export const fetchEntities = (entitySet: String, filter, offset) => {
+  return {
+    type: ActionTypes.FETCH_ENTITIES,
+    payload: {
+      entitySet: entitySet,
+      filter: filter,
+      offset: offset,
+    }
+  }
 };

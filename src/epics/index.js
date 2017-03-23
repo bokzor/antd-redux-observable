@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import { example } from './exampleEpic';
+import { fetchMetada } from './metadataEpic';
 
 export default combineEpics(
-  example
+  fetchMetada
 );

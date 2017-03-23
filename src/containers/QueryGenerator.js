@@ -13,7 +13,6 @@ export default class QueryGenerator extends Component {
 
   handleChange(value) {
     fetchMetadata('mail_contact');
-    console.log(value);
   }
 
   render() {

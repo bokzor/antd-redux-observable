@@ -4,17 +4,18 @@ const { Sider, Content } = Layout;
 import 'antd/dist/antd.min.css';
 import Datatable from '../components/DataTable';
 import QueryGenerator from '../containers/QueryGenerator';
-import enUS from 'antd/lib/locale-provider/en_US';
+import frBe from 'antd/lib/locale-provider/fr_BE';
 
 
 export default class App extends Component {
   render() {
     return (
-      <LocaleProvider locale={enUS}>
+      <LocaleProvider locale={frBe}>
         <Layout>
-          <Sider width="400">
+
+          {/*<Sider width="400">
             <QueryGenerator />
-          </Sider>
+          </Sider>*/}
           <Content><Datatable/></Content>
         </Layout>
       </LocaleProvider>

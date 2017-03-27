@@ -1,32 +1,27 @@
-import {Observable} from 'rxjs/Observable';
+require('rxjs');
 import * as ActionTypes from '../constants/ActionTypes';
-import {exampleAction} from '../actionCreators';
 import 'rxjs/add/operator/switchMap';
-import {efEndoint} from '../constants/API';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/map';
 
-export function example(action$) {
-  return action$.ofType(ActionTypes.ACTION_EXAMPLE)
-    .delay(2000)
-    .mergeMap(() => Observable.merge(
-      Observable.of(exampleAction()),
-      Observable.timer(2000)
-        .map(() => true)
-    ));
-}
+import { pathJoin, http } from '../utils/http';
+import {efEndpoint} from '../constants/API';
 
 
-export function fetchMetada(action$) {
+export function fetchMetadata(action$) {
   return action$.ofType(ActionTypes.FETCH_METADATA)
-    .switchMap((action) =>
-      Observable.ajax({url: host + '/' + action$.payload.entitySet + '/metadata', responseType: 'json'})
+    .map(action => action.payload.entitySet)
+    .mergeMap(entitySet =>
+      http.getJSON(pathJoin(efEndpoint, entitySet, '/metadata'))
         .map((result) => {
           return {
-            type: 'METADATA_FETCHED',
+            type: ActionTypes.METADATA_FETCHED,
             payload: {
-              metadata,
-              entitySet: action$.payload.entitySet
+              metadata: result,
+              entitySet: entitySet
             }
           };
         })
     )
+
 }

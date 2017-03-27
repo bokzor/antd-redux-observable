@@ -1,47 +1,19 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 import { Table } from 'antd';
+import config from '../constants/datatableConfig';
+import FilterGroupContainer from '../models/FilterGroupContainer';
+import { fetchEntitiesAction } from '../actionCreators';
 
-
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-  sorter: true,
-  render: name => `${name.first} ${name.last}`,
-  width: '20%',
-}, {
-  title: 'Gender',
-  dataIndex: 'gender',
-  filters: [
-    { text: 'Male', value: 'male' },
-    { text: 'Female', value: 'female' },
-  ],
-  width: '20%',
-}, {
-  title: 'Email',
-  dataIndex: 'email',
-}];
-
-export default class DataTable extends Component {
+class DataTable extends Component {
 
 
   handleTableChange(pagination, filters, sorter) {
-    const pager = this.state.pagination;
-    pager.current = pagination.current;
-    this.setState({
-      pagination: pager,
-    });
-    this.fetch({
-      results: pagination.pageSize,
-      page: pagination.current,
-      sortField: sorter.field,
-      sortOrder: sorter.order,
-      ...filters,
-    });
+    console.log(pagination, sorter);
   }
 
-  fetch(params = {}) {
-    console.log('params:', params);
-    this.setState({ loading: false });
+  fetch(entitySet = config.entitySet, filter = new FilterGroupContainer(), page = 1, limit = 10, order = "") {
+    this.props.fetchEntities(entitySet, filter, page, limit, order);
   }
 
   componentDidMount() {
@@ -50,13 +22,23 @@ export default class DataTable extends Component {
 
   render() {
     return (
-      <Table columns={columns}
-             rowKey={record => record.registered}
-             dataSource={this.state.data}
-             pagination={this.state.pagination}
-             loading={this.state.loading}
+      <Table columns={config.columns}
+
+             //rowKey={record => record.registered}
+             //dataSource={this.state.data}
+             //pagination={this.state.pagination}
+             //loading={this.state.loading}
              onChange={this.handleTableChange}
       />
     );
   }
 }
+
+
+
+const mapStateToProps = (state) => {
+  return {}
+};
+
+
+export default connect(mapStateToProps, {fetchEntities: fetchEntitiesAction})(DataTable);

@@ -4,8 +4,10 @@ const initialState = [];
 
 export default function metadataReducer(state = initialState, action) {
   switch (action.type) {
-    case ActionTypes.ACTION_EXAMPLE:
-      return action.payload;
+    case ActionTypes.FETCH_METADATA:
+      return {...state, isLoading: true };
+    case ActionTypes.METADATA_FETCHED:
+      return {...state, [action.payload.entitySet]: action.payload.metadata, isLoading: false};
     default:
       return state;
   }
